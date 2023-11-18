@@ -7,9 +7,12 @@ import os
 import pwd
 import sys
 
-parser = argparse.ArgumentParser(description='Fetch email from an EC2 S3 bucket fed by Amazon SES.')
+parser = argparse.ArgumentParser(
+    description='Fetch email from an EC2 S3 bucket fed by Amazon SES.',
+    epilog='Use Amazon boto3 configuration and environment to authenticate to S3.'
+)
 parser.add_argument('bucket_name')
-parser.add_argument('user',default=os.getlogin())
+parser.add_argument('--user',default=os.getlogin(),required=False)
 args = parser.parse_args()
 
 s3_bucket = args.bucket_name
